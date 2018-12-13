@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/index/main",
+    "pages/wheel/main",
+    "pages/scratch/main",
+    "pages/slotMachine/main",
+    "pages/fruitMachine/main",
+    "pages/gridcard/main",
+    "pages/shake/main",
+    "pages/gestureLock/main"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#F8F8F8",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "navigationBarTitleText": "mpvue营销组件",
+    "navigationBarTextStyle": "black"
+  }
+}

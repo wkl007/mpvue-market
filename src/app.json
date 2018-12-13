@@ -5,7 +5,7 @@
     "pages/scratch/main",
     "pages/slotMachine/main",
     "pages/fruitMachine/main",
-    "pages/gridcard/main",
+    "pages/gridCard/main",
     "pages/shake/main",
     "pages/gestureLock/main"
   ],

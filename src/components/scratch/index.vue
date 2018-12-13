@@ -1,20 +1,21 @@
 <template>
   <div id="scratch">
-    <div class="scratch_wp"
-         style="position:relative;margin: 0 auto;"
-         :style="[{
+    <div
+      class="scratch_wp"
+      style="position:relative;margin: 0 auto;"
+      :style="[{
            width:canvasWidth+'px',
            height:canvasHeight+'px'
          }]"
     >
       <canvas
+        v-if="canvasId"
+        :canvas-id="canvasId"
         style="margin: 0 auto; background: transparent;"
         :style="[{
           width:canvasWidth+'px',
           height:canvasHeight+'px'
         }]"
-        canvas-id="scratch"
-        @click="click"
         @touchstart="touchStart"
         @touchmove="touchMove"
         @touchend="touchEnd"
@@ -35,10 +36,12 @@
 </template>
 
 <script type="text/ecmascript-6">
-  const ctx = wx.createCanvasContext('scratch')
-
   export default {
     props: {
+      canvasId: {
+        type: String,
+        default: 'scratch'
+      },
       // 画布宽度
       canvasWidth: {
         type: Number,
@@ -80,9 +83,6 @@
         default: '#ccc'
       }
     },
-    canvasOptions: {
-      canvasId: 'scratch'
-    },
     data () {
       return {
         lastX: 0,
@@ -97,7 +97,6 @@
       }
     },
     mounted () {
-      console.log(ctx)
       this.init()
       this.isScroll = true
     },
@@ -118,20 +117,21 @@
       },
       // 初始化
       init () {
+        this.ctx = wx.createCanvasContext(this.canvasId)
         const { canvasWidth, canvasHeight, imageResource, maskColor } = this
-        ctx.clearRect(0, 0, canvasWidth, canvasHeight)
+        this.ctx.clearRect(0, 0, canvasWidth, canvasHeight)
         if (imageResource) {
           wx.downloadFile({
             url: imageResource,
             success: res => {
-              ctx.drawImage(res.tempFilePath, 0, 0, canvasWidth, canvasHeight)
-              ctx.draw()
+              this.ctx.drawImage(res.tempFilePath, 0, 0, canvasWidth, canvasHeight)
+              this.ctx.draw()
             }
           })
         } else {
-          ctx.setFillStyle(maskColor)
-          ctx.fillRect(0, 0, canvasWidth, canvasHeight)
-          ctx.draw()
+          this.ctx.setFillStyle(maskColor)
+          this.ctx.fillRect(0, 0, canvasWidth, canvasHeight)
+          this.ctx.draw()
         }
       },
       // 开始
@@ -177,26 +177,23 @@
         return [x1, y1, 2 * radius]
       },
       touchStart (e) {
-        console.log(111)
         if (!this.isStart) return
         const pos = this.drawRect(e.touches[0].x, e.touches[0].y)
-        ctx.clearRect(pos[0], pos[1], pos[2], pos[2])
-        ctx.draw(true)
+        this.ctx.clearRect(pos[0], pos[1], pos[2], pos[2])
+        this.ctx.draw(true)
       },
-
       touchMove (e) {
         if (!this.isStart) return
         const pos = this.drawRect(e.touches[0].x, e.touches[0].y)
-        ctx.clearRect(pos[0], pos[1], pos[2], pos[2])
-        ctx.draw(true)
+        this.ctx.clearRect(pos[0], pos[1], pos[2], pos[2])
+        this.ctx.draw(true)
       },
-
       touchEnd (e) {
         if (!this.isStart) return
         // 自动清楚采用点范围值方式判断
         const { canvasWidth, canvasHeight, minX, minY, maxX, maxY } = this
         if (maxX - minX > 0.7 * canvasWidth && maxY - minY > 0.7 * canvasHeight) {
-          ctx.draw()
+          this.ctx.draw()
           console.log('完成')
           this.$emit('change', this.awardTxt)
           // this.endCallBack && this.endCallBack()
@@ -209,6 +206,5 @@
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
-
 
 </style>

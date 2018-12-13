@@ -29,3 +29,22 @@ export function randomNum (minNum, maxNum) {
       return 0
   }
 }
+
+/**
+ * 防抖
+ * @param func
+ * @param delay
+ * @returns {Function}
+ */
+export function debounce (func, delay) {
+  let timer
+
+  return function (...args) {
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(() => {
+      func.apply(this, args)
+    }, delay)
+  }
+}

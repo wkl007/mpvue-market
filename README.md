@@ -1,4 +1,4 @@
-## wxapp-market
+## mpvue-market
 
 > mpvue小程序营销组件，原版[wxapp-market](https://github.com/o2team/wxapp-market)
 

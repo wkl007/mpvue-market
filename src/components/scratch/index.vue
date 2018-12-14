@@ -112,9 +112,6 @@
       this.isLoaded = false
     },
     methods: {
-      click () {
-        console.log('click')
-      },
       // 初始化
       init () {
         this.ctx = wx.createCanvasContext(this.canvasId)

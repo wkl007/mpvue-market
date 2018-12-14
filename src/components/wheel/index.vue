@@ -56,6 +56,9 @@
     mounted () {
       this.init()
     },
+    onUnload () {
+      this.reset()
+    },
     methods: {
       // 转盘初始化
       init () {
@@ -109,11 +112,13 @@
     width: ~'500rpx';
     height: ~'500rpx';
     margin: 0 auto;
+
     img {
       display: block;
       width: ~'500rpx';
       height: ~'500rpx';
     }
+
     .wheel-pointer {
       position: absolute;
       width: ~'150rpx';
@@ -122,6 +127,7 @@
       left: 50%;
       margin: ~'-75rpx' 0 0 ~'-75rpx';
       transform-origin: 50% 50%;
+
       img {
         position: absolute;
         width: ~'150rpx';

@@ -100,16 +100,9 @@
       this.init()
       this.isScroll = true
     },
-    onUnload () {
-      this.lastX = 0
-      this.lastY = 0
-      this.minX = ''
-      this.minY = ''
-      this.maxX = ''
-      this.maxY = ''
-      this.isStart = true
-      this.isScroll = false
-      this.isLoaded = false
+    onShow () {
+      this.init()
+      this.isScroll = true
     },
     methods: {
       // 初始化
@@ -148,6 +141,7 @@
         this.maxY = ''
         this.isStart = true
         this.isScroll = false
+        this.isLoaded = false
       },
       reset () {
         this.init()

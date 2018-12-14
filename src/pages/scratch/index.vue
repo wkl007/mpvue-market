@@ -25,6 +25,10 @@
         text: '开始刮奖'
       }
     },
+    onUnload () {
+      this.isStart = true
+      this.text = '开始刮奖'
+    },
     methods: {
       onStart () {
         if (this.isStart) {
@@ -46,6 +50,9 @@
             } else if (res.cancel) {
               console.log('用户点击取消')
             }
+            this.$refs.scratch.restart()
+            this.text = '开始'
+            this.isStart = true
           }
         })
       }

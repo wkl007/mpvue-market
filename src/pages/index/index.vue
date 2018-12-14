@@ -30,7 +30,6 @@
   import scratch from '../../assets/images/scratch.png'
   import slotMachine from '../../assets/images/slotMachine.png'
   import fruitMachine from '../../assets/images/fruitMachine.png'
-  import gridCard from '../../assets/images/gridCard.png'
   import shake from '../../assets/images/shake.png'
   import gestureLock from '../../assets/images/gestureLock.png'
 
@@ -65,13 +64,6 @@
             url: '/pages/fruitMachine/main',
             imgUrl: fruitMachine,
             name: '水果机'
-          },
-          {
-            id: 'gridCard',
-            sub: 'gridCard',
-            url: '/pages/gridCard/main',
-            imgUrl: gridCard,
-            name: '九宫格翻纸牌'
           },
           {
             id: 'shake',

@@ -306,6 +306,7 @@
     display: flex;
     width: ~'400rpx';
     margin: ~'60rpx' auto;
+
     .machine_item_wp {
       width: ~'80rpx';
       height: ~'80rpx';
@@ -314,9 +315,11 @@
       border-radius: ~'2rpx';
       overflow: hidden;
       margin-right: ~'10rpx';
+
       &:last-child {
         margin-right: 0;
       }
+
       .machine_item_slide {
         position: absolute;
         width: ~'80rpx';
@@ -324,6 +327,7 @@
         top: 0;
         left: 0;
       }
+
       .machine_item_ele {
         width: ~'80rpx';
         height: ~'80rpx';
